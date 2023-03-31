@@ -24,8 +24,12 @@ class KeyEventParams(NamedTuple):
 
 @dataclasses.dataclass
 class KeyStroke:
-    LEFT_PRESS = KeyEventParams(virtual_key_code=KeyboardKeyMapping.VK_LEFT, hardware_scan_for_key=0, flags=KEY_PRESS,
-                                extra_into=0)
+    LEFT_PRESS = KeyEventParams(
+        virtual_key_code=KeyboardKeyMapping.VK_LEFT,
+        hardware_scan_for_key=0,
+        flags=KEY_PRESS,
+        extra_into=0,
+    )
     LEFT_RELEASE = KeyEventParams(KeyboardKeyMapping.VK_LEFT, 0, KEY_RELEASE, 0)
     RIGHT_PRESS = KeyEventParams(KeyboardKeyMapping.VK_RIGHT, 0, KEY_PRESS, 0)
     RIGHT_RELEASE = KeyEventParams(KeyboardKeyMapping.VK_RIGHT, 0, KEY_RELEASE, 0)

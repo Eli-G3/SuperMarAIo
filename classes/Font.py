@@ -25,7 +25,7 @@ class Font(Spritesheet):
                         2,
                         colorkey=pygame.color.Color(0, 0, 0),
                         xTileSize=8,
-                        yTileSize=8
+                        yTileSize=8,
                     )
                 }
             )

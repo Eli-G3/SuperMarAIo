@@ -1,5 +1,6 @@
 from classes.KeyBoard import KeyBoard
 
+
 class Player:
     def __init__(self):
         pass

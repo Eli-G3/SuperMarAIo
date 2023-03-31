@@ -132,7 +132,10 @@ class Menu:
         self.screen.blit(
             self.level.sprites.spriteCollection.get("bush_3").image, (18 * 32, 12 * 32)
         )
-        self.screen.blit(self.level.sprites.spriteCollection.get("goomba-1").image, (18.5*32, 12*32))
+        self.screen.blit(
+            self.level.sprites.spriteCollection.get("goomba-1").image,
+            (18.5 * 32, 12 * 32),
+        )
 
     def drawSettings(self):
         self.drawDot()
@@ -156,25 +159,27 @@ class Menu:
 
     def drawBorder(self, x, y, width, height, color, thickness):
         pygame.draw.rect(self.screen, color, (x, y, width, thickness))
-        pygame.draw.rect(self.screen, color, (x, y+width, width, thickness))
+        pygame.draw.rect(self.screen, color, (x, y + width, width, thickness))
         pygame.draw.rect(self.screen, color, (x, y, thickness, width))
-        pygame.draw.rect(self.screen, color, (x+width, y, thickness, width+thickness))
+        pygame.draw.rect(
+            self.screen, color, (x + width, y, thickness, width + thickness)
+        )
 
     def drawLevelChooser(self):
         j = 0
         offset = 75
         textOffset = 90
         for i, levelName in enumerate(self.loadLevelNames()):
-            if self.currSelectedLevel == i+1:
+            if self.currSelectedLevel == i + 1:
                 color = (255, 255, 255)
             else:
                 color = (150, 150, 150)
             if i < 3:
-                self.dashboard.drawText(levelName, 175*i+textOffset, 100, 12)
-                self.drawBorder(175*i+offset, 55, 125, 75, color, 5)
+                self.dashboard.drawText(levelName, 175 * i + textOffset, 100, 12)
+                self.drawBorder(175 * i + offset, 55, 125, 75, color, 5)
             else:
-                self.dashboard.drawText(levelName, 175*j+textOffset, 250, 12)
-                self.drawBorder(175*j+offset, 210, 125, 75, color, 5)
+                self.dashboard.drawText(levelName, 175 * j + textOffset, 250, 12)
+                self.drawBorder(175 * j + offset, 210, 125, 75, color, 5)
                 j += 1
 
     def loadLevelNames(self):
@@ -199,7 +204,9 @@ class Menu:
                     if self.inChoosingLevel or self.inSettings:
                         self.inChoosingLevel = False
                         self.inSettings = False
-                        self.__init__(self.screen, self.dashboard, self.level, self.sound)
+                        self.__init__(
+                            self.screen, self.dashboard, self.level, self.sound
+                        )
                     else:
                         pygame.quit()
                         sys.exit()
@@ -212,7 +219,7 @@ class Menu:
                         self.state -= 1
                 elif event.key == pygame.K_DOWN or event.key == pygame.K_j:
                     if self.inChoosingLevel:
-                        if self.currSelectedLevel+3 <= self.levelCount:
+                        if self.currSelectedLevel + 3 <= self.levelCount:
                             self.currSelectedLevel += 3
                             self.drawLevelChooser()
                     if self.state < 2:
@@ -230,8 +237,12 @@ class Menu:
                         self.inChoosingLevel = False
                         self.dashboard.state = "start"
                         self.dashboard.time = 0
-                        self.level.loadLevel(self.levelNames[self.currSelectedLevel-1])
-                        self.dashboard.levelName = self.levelNames[self.currSelectedLevel-1].split("Level")[1]
+                        self.level.loadLevel(
+                            self.levelNames[self.currSelectedLevel - 1]
+                        )
+                        self.dashboard.levelName = self.levelNames[
+                            self.currSelectedLevel - 1
+                        ].split("Level")[1]
                         self.start = True
                         return
                     if not self.inSettings:
@@ -249,7 +260,9 @@ class Menu:
                                 self.sound.music_channel.stop()
                                 self.music = False
                             else:
-                                self.sound.music_channel.play(self.sound.soundtrack, loops=-1)
+                                self.sound.music_channel.play(
+                                    self.sound.soundtrack, loops=-1
+                                )
                                 self.music = True
                             self.saveSettings("./settings.json")
                         elif self.state == 1:
