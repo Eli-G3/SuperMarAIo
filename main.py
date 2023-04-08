@@ -1,4 +1,3 @@
-import logging
 import pygame
 from classes.Dashboard import Dashboard
 from classes.Level import Level
@@ -38,9 +37,8 @@ def main():
             level.drawLevel(mario.camera)
             dashboard.update()
             mario.update()
-            logging.getLogger(__name__).info("Calling move right")
             player.move_right()
-            logging.getLogger(__name__).info("Calling move right")
+            player.jump()
         pygame.display.update()
         clock.tick(max_frame_rate)
     return "restart"
